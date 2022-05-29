@@ -1,0 +1,35 @@
+.header{
+    height: 245px;
+    width: 100%;
+
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+
+}
+.backHomeLink{
+
+    color: #363636
+;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    margin-left: 168px;
+    margin-bottom: 45px;
+
+}
+
+.articleBody{
+    padding-top: 35px;
+    background-color: #ffffff;
+    height: 1001px;
+    width: 1290px;
+    margin: 150px 75px 35px;
+    position: relative;
+    z-index: 3;
+    border-radius: 5px;
+}
