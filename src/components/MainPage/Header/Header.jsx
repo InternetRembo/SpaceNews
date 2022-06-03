@@ -11,9 +11,8 @@ const Header = (props) => {
   );
   const searchQuery = useSelector((state) => state.mainPageReducer.searchQuery);
 
-  console.log("searchQuery", searchQuery);
   const onSearch = (value) => {
-    dispatch(GetSearchQueryAC(value.target.value));
+    dispatch(GetSearchQueryAC(value.target.value.toLowerCase()));
   };
   return (
     <div>

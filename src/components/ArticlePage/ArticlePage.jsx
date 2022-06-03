@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import classes from "./ArticlePage.module.css";
 import mainPageReducer, {
   GetArticlesParamsTC,
@@ -26,7 +26,6 @@ const ArticlePage = (props) => {
   const articleParams = useSelector(
     (state) => state.mainPageReducer.articleParams
   );
-  console.log("articleParams", articleParams);
 
   let onBackHomeClick = () => {
     dispatch(openFullArticleAC(null));

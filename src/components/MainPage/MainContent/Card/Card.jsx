@@ -21,7 +21,7 @@ const InfoCard = (props) => {
     <Card
       sx={{
         width: "400px",
-        height: "530px",
+        height: "600px",
         position: "relative",
       }}
     >
@@ -39,6 +39,7 @@ const InfoCard = (props) => {
             component="div"
             sx={{
               mt: "24px",
+              textOverflow: "ellipsis",
             }}
           >
             {props.title}
@@ -56,6 +57,9 @@ const InfoCard = (props) => {
             variant="subtitle1"
             sx={{
               mt: "20px",
+              maxHeight: "100px",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
             }}
           >
             {/*{props.summary*/}
