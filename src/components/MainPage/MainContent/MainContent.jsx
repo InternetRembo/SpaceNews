@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InfoCard from "./Card/Card";
 import {
   GetArticlesDataTC,
@@ -17,38 +17,20 @@ const MainContent = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await dispatch(GetArticlesDataTC());
-      return data;
+      await dispatch(GetArticlesDataTC(searchQuery));
     };
-    fetchData();
-  }, []);
-  let keywordsList = searchQuery.split(" ");
-  let filterArticles = () => {
-    if (searchQuery.length < 1) {
-      return articlesData;
-    }
 
-    let result = articlesData.filter((el) => {
-      for (let i = 0; i <= keywordsList.length - 1; i++) {
-        if (
-          el.summary.toUpperCase().includes(keywordsList[i]) ||
-          el.summary.toLowerCase().includes(keywordsList[i]) ||
-          el.title.toUpperCase().includes(keywordsList[i]) ||
-          el.title.toLowerCase().includes(keywordsList[i])
-        ) {
-          return true;
-        }
-      }
-    });
-    return result;
-  };
+    fetchData();
+  }, [searchQuery]);
+
+  let keywordsList = searchQuery.split(" ");
 
   let onCardClick = (id) => {
     dispatch(openFullArticleAC(id));
   };
 
-  let summaryWithHighlight = (summary) => {
-    let result = summary.split(" ").map((el) => {
+  let textWithHighlight = (text) => {
+    let result = text.split(" ").map((el) => {
       for (let i = 0; i <= keywordsList.length - 1; i++) {
         if (el.toLowerCase() === keywordsList[i].toLowerCase()) {
           return <b className={classes.highlight}>{el + " "}</b>;
@@ -58,42 +40,10 @@ const MainContent = (props) => {
     });
     return result;
   };
-
-  let titleWithHighlight = (title) => {
-    let result = title.split(" ").map((el) => {
-      for (let i = 0; i <= keywordsList.length - 1; i++) {
-        if (el.toLowerCase() === keywordsList[i].toLowerCase()) {
-          return <b className={classes.highlight}>{el + " "}</b>;
-        }
-      }
-      return el + " ";
-    });
-    return result;
-  };
-
-  filterArticles().map((el) => {
-    return (
-      <Grid item xs={12} md={4} key={el.id}>
-        <InfoCard
-          onClick={() => {
-            onCardClick(el.id);
-          }}
-          id={el.id}
-          image={el.imageUrl}
-          newsSite={el.newsSite}
-          publishedAt={el.publishedAt}
-          summary={summaryWithHighlight(el.summary)}
-          title={titleWithHighlight(el.title)}
-          updatedAt={el.updatedAt}
-          url={el.url}
-        />
-      </Grid>
-    );
-  });
 
   return (
     <Grid container spacing={"45px"}>
-      {filterArticles().map((el) => {
+      {articlesData.map((el) => {
         return (
           <Grid item xs={12} md={4} key={el.id}>
             <InfoCard
@@ -104,8 +54,8 @@ const MainContent = (props) => {
               image={el.imageUrl}
               newsSite={el.newsSite}
               publishedAt={el.publishedAt}
-              summary={summaryWithHighlight(el.summary)}
-              title={el.title}
+              summary={textWithHighlight(el.summary)}
+              title={textWithHighlight(el.title)}
               updatedAt={el.updatedAt}
               url={el.url}
             />

@@ -5,8 +5,11 @@ const instance = axios.create({
 });
 
 export const MainAPI = {
-  articles() {
-    return instance.get(`/articles`).then((response) => response.data);
+  articles(query) {
+    let params = query ? { _q: query, _sort: "publishedAt" } : {};
+    return instance
+      .get(`/articles`, { params: params })
+      .then((response) => response.data);
   },
   paramsById(id) {
     return instance.get(`/articles/${id}`).then((response) => response.data);

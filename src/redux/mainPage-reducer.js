@@ -1,4 +1,3 @@
-import axios from "axios";
 import { MainAPI } from "../api/api";
 
 const GET_ARTICLES_DATA = "GET_ARTICLES_DATA";
@@ -59,8 +58,8 @@ export const GetArticlesParamsAC = (articleParams) => {
   };
 };
 
-export const GetArticlesDataTC = () => async (dispatch) => {
-  let articlesData = await MainAPI.articles();
+export const GetArticlesDataTC = (query) => async (dispatch) => {
+  let articlesData = await MainAPI.articles(query);
   dispatch(GetArticlesDataAC(articlesData));
 };
 export const GetArticlesParamsTC = (id) => async (dispatch) => {

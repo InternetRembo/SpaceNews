@@ -30,7 +30,7 @@ const InfoCard = (props) => {
           component="img"
           height="217px"
           image={props.image}
-          alt="green iguana"
+          alt="Something is wrong with the picture"
         />
         <CardContent>
           <Typography
@@ -62,11 +62,6 @@ const InfoCard = (props) => {
               overflow: "hidden",
             }}
           >
-            {/*{props.summary*/}
-            {/*  ? props.summary.length <= 138*/}
-            {/*    ? props.summary.split("").slice(0, 138).join("")*/}
-            {/*    : props.summary.split("").slice(0, 138).join("") + "..."*/}
-            {/*  : ""}*/}
             {props.summary}
           </Typography>
         </CardContent>
@@ -80,7 +75,9 @@ const InfoCard = (props) => {
             size="small"
             color="secondary"
           >
-            Read more <ArrowForwardIcon />
+            <div className={classes.arrowIcon}>
+              Read more <ArrowForwardIcon sx={{ marginBottom: "-5px" }} />
+            </div>
           </Link>
         </div>
       </CardActions>

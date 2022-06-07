@@ -12,7 +12,7 @@ const Header = (props) => {
   const searchQuery = useSelector((state) => state.mainPageReducer.searchQuery);
 
   const onSearch = (value) => {
-    dispatch(GetSearchQueryAC(value.target.value.toLowerCase()));
+    dispatch(GetSearchQueryAC(value.target.value));
   };
   return (
     <div>
@@ -26,6 +26,7 @@ const Header = (props) => {
         Filter by keywords
       </Typography>
       <TextField
+        value={searchQuery}
         onChange={(value) => {
           onSearch(value);
         }}
